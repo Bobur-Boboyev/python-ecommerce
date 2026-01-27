@@ -8,12 +8,14 @@ from .utils import (
     validate_password, 
     validate_name,
 )
+from .serivices import UserService
 
 
 class CLI:
     
     def __init__(self):
         self.current_user = None
+        self.user_service = UserService()
     
     def run(self) -> None:
         while True:
@@ -83,6 +85,9 @@ class CLI:
             if not validate_username(username):
                 cprint('Yaroqli username kiriting!', 'red')
                 errors += 1
+            if self.user_service.get_user_by_username(username) is not None:
+                cprint('Boshqa username kiriting!', 'red')
+                errors += 1
             if not validate_password(password):
                 cprint('Yaroqli password kiriting!', 'red')
                 errors += 1
@@ -99,12 +104,12 @@ class CLI:
             if errors > 0:
                 continue
             else:
-                self.current_user = {
-                    "username": username,
-                    "pasword": password,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                }
+                self.current_user = self.user_service.add_user(
+                    username=username,
+                    password=password,
+                    first_name=first_name,
+                    last_name=last_name,
+                )
                 cprint("Siz muvaffaqiyatli royxatdan otdingiz!", "green")
 
                 return True
