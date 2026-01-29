@@ -8,7 +8,7 @@ from .utils import (
     validate_password, 
     validate_name,
 )
-from .serivices import UserService
+from .serivices import UserService, ProductService
 
 
 class CLI:
@@ -16,6 +16,7 @@ class CLI:
     def __init__(self):
         self.current_user = None
         self.user_service = UserService()
+        self.product_service = ProductService()
     
     def run(self) -> None:
         while True:
@@ -64,6 +65,13 @@ class CLI:
 
     def show_products(self) -> None:
         print('----------------------Product List----------------------')
+        products = self.product_service.get_products()
+
+        if products:
+            for n, product in enumerate(products, start=1):
+                print(f"{n}. {product['name']}")
+        else:
+            print(colored('Hozirda birorta ham mahsulot mavjud emas!', 'yellow'))
 
     def login(self) -> None:
         while True:

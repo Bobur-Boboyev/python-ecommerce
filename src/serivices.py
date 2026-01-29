@@ -5,6 +5,7 @@ from .db import DB
 
 db = DB()
 
+
 class UserService:
     
     def add_user(self, username: str, password: str, first_name: str, last_name: str) -> User:
@@ -49,6 +50,13 @@ class UserService:
                     first_name=user_data['first_name'],
                     last_name=user_data['last_name']
                 )
+
+
+
+class ProductService:
+
+    def get_products(self) -> list[dict]:
+        return db.get_product_list()
 
 
 class CartService:

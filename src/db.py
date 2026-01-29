@@ -28,3 +28,9 @@ class DB:
 
         with open(self.file_name, 'w') as jsonfile:
             jsonfile.write(json.dumps(data, indent=4))
+
+    def get_product_list(self) -> list[dict]:
+        with open(self.file_name) as jsonfile:
+            data = json.loads(jsonfile.read())
+
+            return data['products']
