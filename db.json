@@ -15,8 +15,33 @@
             "last_name": "Valiyev"
         }
     ],
-    "carts": [],
-    "cart_items": [],
+    "carts": [
+        {
+            "user_id": "acd3c944-de54-4437-a458-b651b89ea0d7",
+            "cart_id": "90e2dec6-bd77-4929-b4da-e6208cce169d"
+        },
+        {
+            "user_id": "e5911363-f4a7-4f0f-b3ab-c682c85162b9",
+            "cart_id": "2c9c271b-ee07-4a99-a761-8474024b047b"
+        }
+    ],
+    "cart_items": [
+        {
+            "cart_id": "90e2dec6-bd77-4929-b4da-e6208cce169d",
+            "product_id": 6,
+            "quantity": 2
+        },
+        {
+            "cart_id": "90e2dec6-bd77-4929-b4da-e6208cce169d",
+            "product_id": 4,
+            "quantity": 1
+        },
+        {
+            "cart_id": "2c9c271b-ee07-4a99-a761-8474024b047b",
+            "product_id": 3,
+            "quantity": 2
+        }
+    ],
     "oders": [],
     "order_items": [],
     "products": [
@@ -33,7 +58,7 @@
             "id": 2,
             "name": "iPhone 15 Pro",
             "category": "electronics",
-            "price": 1199.00,
+            "price": 1199.0,
             "sale": 5,
             "stock": 30,
             "description": "Latest iPhone with A17 Pro chip"
@@ -69,7 +94,7 @@
             "id": 6,
             "name": "Dell UltraSharp 27",
             "category": "electronics",
-            "price": 649.00,
+            "price": 649.0,
             "sale": 12,
             "stock": 18,
             "description": "27-inch 4K professional monitor"
@@ -101,11 +126,11 @@
             "stock": 45,
             "description": "Wireless earbuds with ANC"
         },
-            {
+        {
             "id": 10,
             "name": "iPad Air",
             "category": "electronics",
-            "price": 699.00,
+            "price": 699.0,
             "sale": 5,
             "stock": 20,
             "description": "10.9-inch tablet with M1 chip"
@@ -128,7 +153,7 @@
             "stock": 40,
             "description": "High-speed portable SSD"
         },
-            {
+        {
             "id": 13,
             "name": "Gaming Chair",
             "category": "furniture",

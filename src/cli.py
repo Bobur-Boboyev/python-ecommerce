@@ -8,7 +8,11 @@ from .utils import (
     validate_password, 
     validate_name,
 )
-from .serivices import UserService, ProductService
+from .serivices import (
+    UserService, 
+    ProductService, 
+    CartService,
+)
 
 
 class CLI:
@@ -17,6 +21,7 @@ class CLI:
         self.current_user = None
         self.user_service = UserService()
         self.product_service = ProductService()
+        self.cart_service = CartService()
     
     def run(self) -> None:
         while True:
@@ -42,6 +47,8 @@ class CLI:
                     self.show_products()
                 elif choice == '2':
                     self.logout()
+                elif choice == '3':
+                    self.show_cart()
                 elif choice == '0':
                     self.quit()
                 else:
@@ -61,7 +68,17 @@ class CLI:
         print('----------------------User Menu----------------------')
         print('1. Products')
         print('2. Logout')
+        print('3. My Cart')
         print('0. Quit')
+
+    def show_cart(self):
+        cart_items = self.cart_service.get_user_cart_items(self.current_user)
+
+        if cart_items:
+            for n, cart_item in enumerate(cart_items, start=1):
+                print(f"{n}. {cart_item['product']['name']} - {cart_item['quantity']}")
+        else:
+            print(colored('Sizning savatingiz bosh!', 'yellow'))
 
     def show_products(self) -> None:
         print('----------------------Product List----------------------')
@@ -105,6 +122,19 @@ class CLI:
         print(f'Narxi: {product["price"]}')
         print(f'Chegirma foizi: {product["sale"]}')
         print(f'Soni: {product["stock"]}')
+
+        print('Savatga qoshasizmi (ha)?')
+        choice = input(colored('> ', 'yellow'))
+
+        if choice == 'ha':
+            
+            if self.current_user:
+                self.cart_service.add_item(product, self.current_user)
+                print(colored('Mahsulot savatga qoshildi', 'green'))
+            else:
+                print(colored('Savat qoshish uchun login qilishingiz kerak!', 'yellow'))
+        else:
+            self.show_products()
 
     def search_products_by_name(self):
         search = input("Search: ")
