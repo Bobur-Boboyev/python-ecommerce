@@ -62,6 +62,14 @@ class ProductService:
         for product in self.get_products():
             if product['id'] == product_id:
                 return product
+            
+    def get_product_by_name(self, name: str) -> list[dict]:
+        result = []
+        for product in self.get_products():
+            if name.lower() in product['name'].lower():
+                result.append(product)
+
+        return result
 
 
 class CartService:

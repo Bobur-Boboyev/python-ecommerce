@@ -66,7 +66,9 @@ class CLI:
     def show_products(self) -> None:
         print('----------------------Product List----------------------')
         products = self.product_service.get_products()
+        self.print_products(products)
 
+    def print_products(self, products):
         if products:
             for product in products:
                 print(f"{product['id']}. {product['name']}")
@@ -105,7 +107,13 @@ class CLI:
         print(f'Soni: {product["stock"]}')
 
     def search_products_by_name(self):
-        pass
+        search = input("Search: ")
+
+        products = self.product_service.get_product_by_name(search)
+        if products:
+            self.print_products(products)
+        else:
+            print(colored('Bunday ID ga ega product mavjud emas!', 'yellow'))
 
     def print_product_detail_menu(self):
         print('Productni qidirish uchun qaysi usulni tanlaysiz?')
